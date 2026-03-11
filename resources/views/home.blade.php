@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Siete Punto Siete</title>
-</head>
-<body>
+@extends('layout')
+
+@section('contenido')
 
 <h1>Bienvenido a Siete Punto Siete</h1>
 
-<a href="/productos">Ver productos</a>
-<br>
-<a href="/carrito">Carrito</a>
+<p>Tienda oficial de ropa.</p>
 
-</body>
-</html>
+<a href="/productos" class="boton">Ver productos</a>
+
+@endsection

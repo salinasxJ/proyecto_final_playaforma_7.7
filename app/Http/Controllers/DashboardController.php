@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-class ProductController extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {
-        return view('productos');
+        return view('dashboard');
     }
 }

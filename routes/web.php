@@ -5,8 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 
-Route::get('/', [HomeController::class, 'index']);
-
-Route::get('/productos', [ProductController::class, 'index']);
-
-Route::get('/carrito', [CartController::class, 'index']);
+Route::view('/', 'home');
+Route::view('/productos', 'productos');
+Route::view('/carrito', 'carrito');
+Route::view('/dashboard', 'dashboard');
+Route::view('/login', 'login');
+Route::view('/registro', 'registro');
