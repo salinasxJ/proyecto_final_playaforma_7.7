@@ -7,7 +7,7 @@
 <title>Siete Punto Siete</title>
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -19,6 +19,7 @@
 <a href="/siete_punto_siete/public/">Inicio</a>
 <a href="/siete_punto_siete/public/productos">Productos</a>
 <a href="/siete_punto_siete/public/carrito">
+<i class="fa-solid fa-cart-shopping"></i> 
 Carrito (<span id="contador">0</span>)
 </a>
 <a href="/siete_punto_siete/public/dashboard">Dashboard</a>

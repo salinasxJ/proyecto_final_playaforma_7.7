@@ -11,3 +11,6 @@ Route::view('/carrito', 'carrito');
 Route::view('/dashboard', 'dashboard');
 Route::view('/login', 'login');
 Route::view('/registro', 'registro');
+Route::get('/productos', [ProductoController::class, 'index']);
+Route::get('/crear-producto', [ProductoController::class, 'crear']);
+Route::post('/guardar-producto', [ProductoController::class, 'guardar']);
