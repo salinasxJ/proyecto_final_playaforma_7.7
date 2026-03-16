@@ -2,30 +2,45 @@
 
 @section('contenido')
 
-<h1>Registro</h1>
+<div class="registro-container">
+
+<div class="registro-card">
+
+<h2>Crear cuenta</h2>
 
 <form>
 
-<label>Nombre</label>
-<br>
-<input type="text">
+<label>Nombre completo</label>
+<input type="text" placeholder="Tu nombre">
 
-<br><br>
+<label>Username</label>
+<input type="text" placeholder="Nombre de usuario">
 
 <label>Email</label>
-<br>
-<input type="email">
-
-<br><br>
+<input type="email" placeholder="Correo electrónico">
 
 <label>Contraseña</label>
-<br>
-<input type="password">
+<input type="password" id="password" placeholder="Crea una contraseña">
 
-<br><br>
+<div class="fuerza-password">
+<div id="barra"></div>
+</div>
 
-<button class="boton">Registrarse</button>
+<p id="mensaje"></p>
+
+<label>Confirmar contraseña</label>
+<input type="password" id="confirmar" placeholder="Confirma tu contraseña">
+
+<p id="coincidencia"></p>
+
+<button class="btn-registro">
+Crear cuenta
+</button>
 
 </form>
+
+</div>
+
+</div>
 
 @endsection

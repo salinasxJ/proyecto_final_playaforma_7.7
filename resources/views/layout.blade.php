@@ -9,7 +9,9 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
+<div id="notificacion" class="notificacion">
+Producto agregado al carrito
+</div>
 <body>
 
 <button onclick="modoOscuro()" class="boton">Modo oscuro</button>

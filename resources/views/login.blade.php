@@ -2,24 +2,28 @@
 
 @section('contenido')
 
-<h1>Login</h1>
+<div class="login-container">
+
+<div class="login-card">
+
+<h2>Iniciar sesión</h2>
 
 <form>
 
 <label>Email</label>
-<br>
-<input type="email">
-
-<br><br>
+<input type="email" placeholder="Ingresa tu email">
 
 <label>Contraseña</label>
-<br>
-<input type="password">
+<input type="password" placeholder="Ingresa tu contraseña">
 
-<br><br>
-
-<button class="boton">Ingresar</button>
+<button class="btn-login">
+Ingresar
+</button>
 
 </form>
+
+</div>
+
+</div>
 
 @endsection

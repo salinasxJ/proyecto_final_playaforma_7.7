@@ -2,29 +2,23 @@
 
 @section('contenido')
 
-<h1>Crear Producto</h1>
+<h2>Crear producto</h2>
 
 <form action="/guardar-producto" method="POST">
 
 @csrf
 
-<input type="text" name="nombre" placeholder="Nombre del producto">
+<input type="text" name="nombre" placeholder="Nombre producto">
 
-<br><br>
-
-<textarea name="descripcion" placeholder="Descripción"></textarea>
-
-<br><br>
+<input type="text" name="descripcion" placeholder="Descripcion">
 
 <input type="number" name="precio" placeholder="Precio">
 
-<br><br>
+<input type="number" name="stock" placeholder="Stock">
 
-<input type="text" name="imagen" placeholder="Nombre de la imagen">
-
-<br><br>
-
-<button type="submit">Guardar producto</button>
+<button type="submit">
+Guardar producto
+</button>
 
 </form>
 

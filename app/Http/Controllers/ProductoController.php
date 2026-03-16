@@ -10,26 +10,38 @@ class ProductoController extends Controller
 
 public function index()
 {
-    $productos = Producto::all();
-    return view('productos', compact('productos'));
+
+$productos = Producto::all();
+
+return view('productos', compact('productos'));
+
 }
 
-public function create()
+public function crear()
 {
-    return view('crear_producto');
+return view('crear-producto');
 }
 
-public function store(Request $request)
+public function guardar(Request $request)
 {
 
 Producto::create([
 'nombre' => $request->nombre,
 'descripcion' => $request->descripcion,
 'precio' => $request->precio,
-'imagen' => $request->imagen
+'stock' => $request->stock
 ]);
 
-return redirect('/productos');
+return redirect('/dashboard');
+
+}
+
+public function dashboard()
+{
+
+$productos = Producto::all();
+
+return view('dashboard', compact('productos'));
 
 }
 

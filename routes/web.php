@@ -1,16 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductoController;
 
 Route::view('/', 'home');
-Route::view('/productos', 'productos');
+
+Route::get('/productos', [ProductoController::class, 'index']);
+
 Route::view('/carrito', 'carrito');
-Route::view('/dashboard', 'dashboard');
+
+Route::get('/dashboard', [ProductoController::class, 'dashboard']);
+
 Route::view('/login', 'login');
 Route::view('/registro', 'registro');
-Route::get('/productos', [ProductoController::class, 'index']);
+
 Route::get('/crear-producto', [ProductoController::class, 'crear']);
+
 Route::post('/guardar-producto', [ProductoController::class, 'guardar']);
