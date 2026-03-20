@@ -29,32 +29,30 @@ producto.style.display = texto.includes(filtro) ? "block" : "none";
 // ==============================
 
 function modoOscuro() {
-
 document.body.classList.toggle("oscuro");
-
 }
 
 
 // ==============================
-// CARRITO DE COMPRAS (PERSISTENTE)
+// FUNCIONES BASE DEL CARRITO
 // ==============================
 
 function obtenerCarrito(){
-
 return JSON.parse(localStorage.getItem("carrito")) || [];
-
 }
 
 function guardarCarrito(carrito){
-
 localStorage.setItem("carrito", JSON.stringify(carrito));
-
 }
+
+
+// ==============================
+// CONTADOR DEL CARRITO
+// ==============================
 
 function actualizarContador(){
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
+let carrito = obtenerCarrito();
 let total = 0;
 
 carrito.forEach(producto=>{
@@ -69,11 +67,17 @@ contador.innerText = total;
 
 }
 
-actualizarContador();
+// IMPORTANTE: se ejecuta cuando carga la página
+document.addEventListener("DOMContentLoaded", actualizarContador);
 
-function agregarCarrito(nombre,precio){
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+// ==============================
+// AGREGAR AL CARRITO
+// ==============================
+
+function agregarCarrito(nombre,precio,imagen){
+
+let carrito = obtenerCarrito();
 
 let producto = carrito.find(p => p.nombre === nombre);
 
@@ -86,22 +90,66 @@ producto.cantidad++;
 carrito.push({
 nombre:nombre,
 precio:precio,
+imagen:imagen,
 cantidad:1
 });
 
 }
 
-localStorage.setItem("carrito",JSON.stringify(carrito));
+guardarCarrito(carrito);
 
 actualizarContador();
-
-alert("🛒 "+nombre+" agregado al carrito");
+mostrarNotificacion(nombre);
 
 }
 
 window.agregarCarrito = agregarCarrito;
 
+
+// ==============================
+// NOTIFICACIÓN BONITA
+// ==============================
+
+function mostrarNotificacion(nombre){
+
+let noti = document.getElementById("notificacion");
+
+// evita que rompa todo si no existe
+if(!noti) return;
+
+noti.innerText = "🛒 " + nombre + " agregado al carrito";
+
+noti.classList.add("mostrar");
+
+setTimeout(()=>{
+noti.classList.remove("mostrar");
+},2000);
+
+}
+
+
+// ==============================
+// FUNCIÓN PAGAR
+// ==============================
+
+function pagar(){
+
+let carrito = obtenerCarrito();
+
+if(carrito.length === 0){
+alert("Tu carrito está vacío");
+return;
+}
+
+alert("✅ Compra realizada con éxito");
+
+localStorage.removeItem("carrito");
+
 actualizarContador();
+
+location.reload();
+
+}
 
 
 // ==============================
@@ -131,7 +179,6 @@ barra.style.background = "red";
 mensaje.innerText = "Muy débil";
 
 }
-
 else if(fuerza === 2){
 
 barra.style.width = "50%";
@@ -139,7 +186,6 @@ barra.style.background = "orange";
 mensaje.innerText = "Débil";
 
 }
-
 else if(fuerza === 3){
 
 barra.style.width = "75%";
@@ -147,7 +193,6 @@ barra.style.background = "yellowgreen";
 mensaje.innerText = "Buena";
 
 }
-
 else if(fuerza >= 4){
 
 barra.style.width = "100%";
@@ -159,35 +204,79 @@ mensaje.innerText = "Contraseña fuerte";
 });
 
 }
-function mostrarNotificacion(nombre){
+function aplicarCupon(){
 
-let noti = document.getElementById("notificacion");
+let codigo = document.getElementById("cupon")?.value;
 
-noti.innerText = "🛒 "+nombre+" agregado al carrito";
+if(!codigo) return;
 
-noti.classList.add("mostrar");
+if(codigo === "SENA10"){
+localStorage.setItem("descuento",10);
+alert("Cupón aplicado");
+}else{
+alert("Cupón inválido");
+}
+
+}
+// ==============================
+// CONTADOR DE OFERTA
+// ==============================
+
+function iniciarContador(){
+
+let tiempo = 3600;
+
+setInterval(()=>{
+
+let minutos = Math.floor(tiempo / 60);
+let segundos = tiempo % 60;
+
+let elemento = document.getElementById("tiempo");
+
+if(elemento){
+elemento.innerText = minutos + "m " + segundos + "s";
+}
+
+tiempo--;
+
+},1000);
+
+}
+
+// ==============================
+// POPUP
+// ==============================
+
+function cerrarPopup(){
+
+let popup = document.getElementById("popup");
+
+if(popup){
+popup.style.display = "none";
+}
+
+}
+
+function mostrarPopup(){
+
+let popup = document.getElementById("popup");
+
+if(popup){
+popup.style.display = "block";
+}
+
+}
+
+// ==============================
+// INICIO SEGURO
+// ==============================
+
+document.addEventListener("DOMContentLoaded", function(){
+
+iniciarContador();
 
 setTimeout(()=>{
-noti.classList.remove("mostrar");
-},2000);
+mostrarPopup();
+},3000);
 
-}
-function pagar(){
-
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-if(carrito.length === 0){
-
-alert("Tu carrito está vacío");
-
-return;
-
-}
-
-alert("✅ Compra realizada con éxito");
-
-localStorage.removeItem("carrito");
-
-location.reload();
-
-}
+});

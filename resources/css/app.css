@@ -466,3 +466,157 @@ transition:0.3s;
 .notificacion.mostrar{
 opacity:1;
 }
+.badge{
+position:absolute;
+background:red;
+color:white;
+padding:5px 10px;
+border-radius:5px;
+top:10px;
+left:10px;
+font-size:12px;
+}
+
+.precio-antiguo{
+text-decoration:line-through;
+color:gray;
+font-size:14px;
+}
+/* BUSCADOR */
+.buscador{
+width:100%;
+padding:12px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+/* PROMOCIONES */
+.promo{
+position:relative;
+}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:red;
+color:white;
+padding:5px 10px;
+border-radius:5px;
+}
+
+.precio-antiguo{
+text-decoration:line-through;
+color:gray;
+}
+
+/* CUPÓN */
+.cupon-box{
+margin-bottom:20px;
+display:flex;
+gap:10px;
+}
+
+.boton-cupon{
+background:black;
+color:white;
+padding:10px;
+border:none;
+border-radius:5px;
+}
+
+/* EFECTO PRO */
+.producto:hover{
+transform:scale(1.05);
+transition:0.3s;
+}
+.hero{
+height:400px;
+background:url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f') center/cover;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+text-align:center;
+}
+
+.boton-principal{
+background:black;
+color:white;
+padding:15px 25px;
+border-radius:8px;
+text-decoration:none;
+}
+
+.seccion{
+text-align:center;
+margin:40px 0;
+}
+
+.beneficios{
+display:flex;
+justify-content:space-around;
+margin:40px 0;
+text-align:center;
+}
+
+.beneficio i{
+font-size:30px;
+margin-bottom:10px;
+}
+
+.promo-home{
+background:black;
+color:white;
+text-align:center;
+padding:30px;
+margin:40px 0;
+border-radius:10px;
+}
+
+.frase{
+text-align:center;
+font-style:italic;
+margin-top:30px;
+font-size:18px;
+}
+.contador-oferta{
+background:linear-gradient(135deg,#000,#333);
+color:white;
+padding:15px;
+text-align:center;
+border-radius:10px;
+margin:20px 0;
+font-size:18px;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+#tiempo{
+background:white;
+color:black;
+padding:5px 10px;
+border-radius:5px;
+margin-left:10px;
+font-weight:bold;
+}
+.contador-oferta{
+background:linear-gradient(135deg,#000,#333);
+color:white;
+padding:15px;
+text-align:center;
+border-radius:10px;
+margin:20px 0;
+font-size:18px;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+#tiempo{
+background:white;
+color:black;
+padding:5px 10px;
+border-radius:5px;
+margin-left:10px;
+font-weight:bold;
+}
