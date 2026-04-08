@@ -42,6 +42,12 @@ body{
     border:none;
     cursor:pointer;
 }
+.boton{
+    position:absolute;
+    top:10px;
+    left:10px;
+    z-index:1000;
+}
 .producto img{
 width:100%;
 border-radius:10px;
@@ -364,7 +370,7 @@ transition:0.3s;
 }
 .notificacion{
 position:fixed;
-top:20px;
+top:70px;
 right:20px;
 background:#28a745;
 color:white;
@@ -619,4 +625,24 @@ padding:5px 10px;
 border-radius:5px;
 margin-left:10px;
 font-weight:bold;
+}
+body{
+    margin:0;
+    padding:0;
+}
+.checkout-container{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+max-width:500px;
+margin:auto;
+}
+
+.input-checkout{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:6px;
+border:1px solid #ccc;
 }

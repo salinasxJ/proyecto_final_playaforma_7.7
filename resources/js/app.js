@@ -23,16 +23,6 @@ producto.style.display = texto.includes(filtro) ? "block" : "none";
 
 }
 
-
-// ==============================
-// MODO OSCURO
-// ==============================
-
-function modoOscuro() {
-document.body.classList.toggle("oscuro");
-}
-
-
 // ==============================
 // FUNCIONES BASE DEL CARRITO
 // ==============================
@@ -132,26 +122,23 @@ noti.classList.remove("mostrar");
 // FUNCIÓN PAGAR
 // ==============================
 
-function pagar(){
+// ==============================
+// FUNCIÓN PAGAR
+// ==============================
 
-let carrito = obtenerCarrito();
+window.pagar = function(){
 
-if(carrito.length === 0){
-alert("Tu carrito está vacío");
-return;
+    let carrito = obtenerCarrito();
+
+    if(carrito.length === 0){
+        alert("Tu carrito está vacío");
+        return;
+    }
+
+    console.log("PAGAR FUNCIONANDO"); // prueba
+
+    window.location.href = "/siete_punto_siete/public/checkout";
 }
-
-alert("✅ Compra realizada con éxito");
-
-localStorage.removeItem("carrito");
-
-actualizarContador();
-
-location.reload();
-
-}
-
-
 // ==============================
 // FUERZA DE CONTRASEÑA
 // ==============================
@@ -278,5 +265,128 @@ iniciarContador();
 setTimeout(()=>{
 mostrarPopup();
 },3000);
+
+});
+// ==============================
+// MOSTRAR CARRITO
+// ==============================
+
+function mostrarCarrito(){
+
+let carrito = obtenerCarrito();
+let contenedor = document.getElementById("carrito-contenido");
+
+if(!contenedor) return;
+
+if(carrito.length === 0){
+
+contenedor.innerHTML = `
+<div class="carrito-vacio">
+<i class="fa-solid fa-cart-shopping carrito-icono"></i>
+<p>No hay productos en el carrito</p>
+<a href="/siete_punto_siete/public/productos" class="boton-comprar">
+Ver productos
+</a>
+</div>
+`;
+
+return;
+
+}
+
+let html = "";
+let total = 0;
+
+carrito.forEach((producto,index)=>{
+
+let subtotal = producto.precio * producto.cantidad;
+
+html += `
+<div class="producto-carrito">
+<h3>${producto.nombre}</h3>
+<p>$${producto.precio}</p>
+
+<input type="number" min="1" value="${producto.cantidad}" 
+onchange="cambiarCantidad(${index},this.value)">
+
+<button onclick="eliminarProducto(${index})">Eliminar</button>
+
+<p>Subtotal: $${subtotal}</p>
+</div>
+`;
+
+total += subtotal;
+
+});
+
+let descuento = localStorage.getItem("descuento") || 0;
+
+if(descuento > 0){
+total = total - (total * descuento / 100);
+}
+
+html += `
+<h2>Total: $${total}</h2>
+
+<div class="botones-carrito">
+<button onclick="vaciarCarrito()" class="boton-vaciar">
+Vaciar carrito
+</button>
+
+<button onclick="pagar()" class="boton-pagar">
+Finalizar compra
+</button>
+</div>
+`;
+
+contenedor.innerHTML = html;
+
+}
+
+window.mostrarCarrito = mostrarCarrito;
+
+
+// ==============================
+// FUNCIONES DEL CARRITO
+// ==============================
+
+window.eliminarProducto = function(index){
+
+let carrito = obtenerCarrito();
+carrito.splice(index,1);
+
+guardarCarrito(carrito);
+mostrarCarrito();
+actualizarContador();
+
+}
+
+window.cambiarCantidad = function(index,cantidad){
+
+let carrito = obtenerCarrito();
+carrito[index].cantidad = parseInt(cantidad);
+
+guardarCarrito(carrito);
+mostrarCarrito();
+actualizarContador();
+
+}
+
+window.vaciarCarrito = function(){
+
+localStorage.removeItem("carrito");
+mostrarCarrito();
+actualizarContador();
+
+}
+
+
+// ==============================
+// AUTO CARGA
+// ==============================
+
+document.addEventListener("DOMContentLoaded", function(){
+
+mostrarCarrito();
 
 });

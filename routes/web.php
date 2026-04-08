@@ -17,3 +17,5 @@ Route::view('/registro', 'registro');
 Route::get('/crear-producto', [ProductoController::class, 'crear']);
 
 Route::post('/guardar-producto', [ProductoController::class, 'guardar']);
+
+Route::view('/checkout', 'checkout');

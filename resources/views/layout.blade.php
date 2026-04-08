@@ -19,8 +19,6 @@
 Producto agregado al carrito
 </div>
 
-<!-- BOTÓN MODO OSCURO -->
-<button onclick="modoOscuro()" class="boton">Modo oscuro</button>
 
 <!-- NAVBAR -->
 <div class="navbar">
